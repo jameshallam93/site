@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.scrolling-element {
+    @apply fixed top-0 left-0 bg-white p-4 w-full transition-transform duration-500 ease-in-out;
+    z-index: 0;
+  }
+  
+  .content {
+    /* @apply h-[300vh] mt-8; Ensures enough content for scrolling */
+  }
