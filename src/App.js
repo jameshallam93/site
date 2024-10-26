@@ -1,7 +1,8 @@
 import "./index.css"
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Sudoku from "./components/Sudoko";
+import { Showcase } from "./components/Showcase";
 
 function Lorem() {
   return(
@@ -30,15 +31,17 @@ function App() {
       height
     };
   };
-  const [scrollY, setScrollY] = React.useState(0);
-  const [windowDimensions, setWindowDimensions] = React.useState(getWindowDimensions());
-  const [yHeight, setYHeight] = React.useState(windowDimensions.height > 1000 ? 250 : 120);
+  const [scrollY, setScrollY] = useState(0);
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+  const [yHeight, setYHeight] = useState(windowDimensions.height > 1000 ? 250 : 120);
+  const [yOffset, setYOffset] = useState(windowDimensions.height > 400 ? -200 : -300 )
   
 
   useEffect(() => {
     const handleResize = () => {
       setWindowDimensions(getWindowDimensions());
       setYHeight(windowDimensions.height > 1000 ? 250 : 120);
+      setYOffset(windowDimensions.height > 400 ? -200 : -300 )
     };
     window.addEventListener('resize', handleResize);
     
@@ -54,14 +57,13 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  
 
 
   return (
     <div className="h-auto bg-black">
       <div className="container h-full w-full  flex flex-col-reverse">
         <div className={`sticky-element w-screen flex h-screen z-0`} style={{
-          transform: `translateY(${Math.max(-300 +(-1.2 * scrollY), -800)}px)`,
+          transform: `translateY(${Math.max(yOffset +(-1.1 * scrollY), -800)}px)`,
           opacity: (yHeight-scrollY)/100,
         }}>
           <h1 className="text-7xl sm:text-1xl pb-20 pl-5  self-end text-white font-mono">James Hallam</h1>
@@ -70,23 +72,38 @@ function App() {
           transform: `translateY(${Math.min(1.5 * scrollY, 800)}px)`,
           opacity: (yHeight-scrollY)/100,
         }}>
-          <a style={{pointerEvents:scrollY > 250 ? "none": "auto" }} href="https://www.linkedin.com/in/james-hallam-73777753/" className="text-1xl self-end pr-20 text-terminal font-mono hover:text-white">Linkedin</a>
-          <a style={{pointerEvents:scrollY > 250 ? "none": "auto" }} href="https://github.com/jameshallam93" className="text-1xl self-end pr-20 text-terminal font-mono hover:text-white">Github</a>
+          <a
+            style={{pointerEvents:scrollY > 250 ? "none": "auto" }}
+            href="https://www.linkedin.com/in/james-hallam-73777753/"
+            className="text-1xl self-end pr-20 text-terminal font-mono hover:text-white"
+          >
+            Linkedin
+          </a>
+          <a
+            style={{pointerEvents:scrollY > 250 ? "none": "auto" }}
+            href="https://github.com/jameshallam93"
+            className="text-1xl self-end pr-20 text-terminal font-mono hover:text-white"
+          >
+            Github
+          </a>
           <h1 className="text-6xl self-end py-10 px-10  text-white font-mono">Fullstack Platform Engineer</h1>
         </div>
       </div>
       <div className="bg-black z-1 flex md:flex-row flex-col justify-evenly items-between">
         <div className="content flex flex-col">
-          <p className="text-white text-3xl px-10 py-3">
+          <p className="text-slate-300 text-3xl px-10 py-3">
             Fullstack platform engineer with experience working in frontend and factory automation.
           </p>
-          <p className="text-white text-3xl px-10 py-3">
+          <p className="text-slate-300 text-3xl px-10 py-3">
             Proven track record of delivering high quality software solutions to meet business needs.
           </p>
-          <p className="text-white text-3xl px-10 py-3">
+          <p className="text-slate-300 text-3xl px-10 py-3">
+            Exceptional problem solving skills and analytical thinking ability.
+          </p>
+          <p className="text-slate-300 text-3xl px-10 py-3">
             Dabbler in machine learning and game development.
           </p>
-          <p className="text-white text-3xl px-10 py-3">
+          <p className="text-slate-300 text-3xl px-10 py-3">
             I like making cool things.
           </p>
         </div>
@@ -95,7 +112,7 @@ function App() {
           <Sudoku />
         </div>
       </div>
-        <Lorem/>
+        <Showcase />
     </div>
   );
 }
