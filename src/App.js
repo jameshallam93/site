@@ -34,14 +34,14 @@ function App() {
   const [scrollY, setScrollY] = useState(0);
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const [yHeight, setYHeight] = useState(windowDimensions.height > 1000 ? 250 : 120);
-  const [yOffset, setYOffset] = useState(windowDimensions.height > 400 ? -200 : -300 )
+  const [yOffset, setYOffset] = useState(windowDimensions.width > 650 ? -200 : -300 )
   
 
   useEffect(() => {
     const handleResize = () => {
       setWindowDimensions(getWindowDimensions());
       setYHeight(windowDimensions.height > 1000 ? 250 : 120);
-      setYOffset(windowDimensions.height > 400 ? -200 : -300 )
+      setYOffset(windowDimensions.width > 650 ? -200 : -300 )
     };
     window.addEventListener('resize', handleResize);
     
@@ -63,14 +63,16 @@ function App() {
     <div className="h-auto bg-black">
       <div className="container h-full w-full  flex flex-col-reverse">
         <div className={`sticky-element w-screen flex h-screen z-0`} style={{
-          transform: `translateY(${Math.max(yOffset +(-1.1 * scrollY), -800)}px)`,
+          // transform: `translateY(${Math.max(yOffset +(-1.1 * scrollY), -800)}px)`,
+          transform: `translateY(${Math.min(yOffset + scrollY, 208)}px)`,
+
           opacity: (yHeight-scrollY)/100,
         }}>
           <h1 className="text-7xl sm:text-1xl pb-20 pl-5  self-end text-white font-mono">James Hallam</h1>
         </div>
         <div className={`sticky-element w-screen flex flex-col-reverse`} style={{
-          transform: `translateY(${Math.min(1.5 * scrollY, 800)}px)`,
-          opacity: (yHeight-scrollY)/100,
+          transform: `translateY(${Math.min(2 * scrollY, 800)}px)`,
+          opacity: (yHeight-scrollY)/100 + 1,
         }}>
           <a
             style={{pointerEvents:scrollY > 250 ? "none": "auto" }}
@@ -90,20 +92,21 @@ function App() {
         </div>
       </div>
       <div className="bg-black z-1 flex md:flex-row flex-col justify-evenly items-between">
+        
         <div className="content flex flex-col">
-          <p className="text-slate-300 text-3xl px-10 py-3">
+          <p className="text-slate-300 text-3xl px-10 py-7">
             Fullstack platform engineer with experience working in frontend and factory automation.
           </p>
-          <p className="text-slate-300 text-3xl px-10 py-3">
+          <p className="text-slate-300 text-3xl px-10 py-7">
             Proven track record of delivering high quality software solutions to meet business needs.
           </p>
-          <p className="text-slate-300 text-3xl px-10 py-3">
+          <p className="text-slate-300 text-3xl px-10 py-7">
             Exceptional problem solving skills and analytical thinking ability.
           </p>
-          <p className="text-slate-300 text-3xl px-10 py-3">
+          <p className="text-slate-300 text-3xl px-10 py-7">
             Dabbler in machine learning and game development.
           </p>
-          <p className="text-slate-300 text-3xl px-10 py-3">
+          <p className="text-slate-300 text-3xl px-10 py-7">
             I like making cool things.
           </p>
         </div>
@@ -112,7 +115,8 @@ function App() {
           <Sudoku />
         </div>
       </div>
-        <Showcase />
+      <Showcase />
+      <Lorem />
     </div>
   );
 }
