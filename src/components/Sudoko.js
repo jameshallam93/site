@@ -142,10 +142,15 @@ const Sudoku = () => {
                     <div style={{display: solving ? "block" : "none" }} className="text-slate-300 p-2 w-full border-2 border-slate-500 text-center self-center grow z-10">
                         {solving ? "Solving..." : null}
                     </div>
-                    <div style={{display: showNotification ? "block" : "none" }} className="text-slate-300 p2 border-2 border-slate-500 text-center self-center hrow z-10">
-                        <p>
-                        {showNotification ? "Invalid format - see some examples here: https://www.kaggle.com/datasets/rohanrao/sudoku": null}
-                        </p>
+                    <div style={{display: showNotification ? "block" : "none" }} className="text-slate-300 p-2 w-full border-2 border-slate-500 text-center self-center grow z-10">
+                        {/* <p className="w-full"> */}
+                        {showNotification ? (
+                            <>
+                                Invalid format - see some examples{" "}
+                                <a href="https://www.kaggle.com/datasets/rohanrao/sudoku" target="_blank" className="text-terminal w-full">here</a>
+                            </>
+                        ) : null}
+                        {/* </p> */}
                     </div>
                 </div>
             </div>

@@ -63,10 +63,8 @@ function App() {
     <div className="h-auto bg-black">
       <div className="container h-full w-full  flex flex-col-reverse">
         <div className={`sticky-element w-screen flex h-screen z-0`} style={{
-          // transform: `translateY(${Math.max(yOffset +(-1.1 * scrollY), -800)}px)`,
           transform: `translateY(${Math.min(yOffset + scrollY, 208)}px)`,
-
-          opacity: (yHeight-scrollY)/100 + 1,
+          opacity: (yHeight-scrollY)/100 + .5,
         }}>
           <h1 className="text-7xl sm:text-1xl pb-20 pl-5  self-end text-white font-mono">James Hallam</h1>
         </div>
@@ -95,19 +93,19 @@ function App() {
       <div className="bg-black z-1 flex md:flex-row flex-col justify-evenly items-between">
         
         <div className="content flex flex-col">
-          <p className="text-slate-300 text-3xl px-10 py-4 xlg:py-7">
+          <p className="text-slate-300 text-3xl px-10 py-4 xlg:py-10">
             Fullstack platform engineer with experience working in frontend and factory automation.
           </p>
-          <p className="text-slate-300 text-3xl px-10 py-4 xlg:py-7">
+          <p className="text-slate-300 text-3xl px-10 py-4 xlg:py-10">
             Proven track record of delivering high quality software solutions to meet business needs.
           </p>
-          <p className="text-slate-300 text-3xl px-10 py-4 xlg:py-7">
+          <p className="text-slate-300 text-3xl px-10 py-4 xlg:py-10">
             Exceptional problem solving skills and analytical thinking ability.
           </p>
-          <p className="text-slate-300 text-3xl px-10 py-4 xlg:py-7">
+          <p className="text-slate-300 text-3xl px-10 py-4 xlg:py-10">
             Dabbler in machine learning and game development.
           </p>
-          <p className="text-slate-300 text-3xl px-10 py-4 xlg:py-7">
+          <p className="text-slate-300 text-3xl px-10 py-4 xlg:py-10">
             I like making cool things.
           </p>
         </div>
